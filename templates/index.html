@@ -1,15 +1,27 @@
 {% extends 'base.html' %} {% block content %}
-<div class="pt-4 container">
-  <h1 class="mb-3">{% block title %} Start Analysing Image{% endblock %}</h1>
-  <p>
-    Image analysis or imagery analysis is the extraction of meaningful
-    information from images; mainly from digital images by means of digital
-    image processing techniques.
-  </p>
-  <p>
-    Image analysis tasks can be as simple as reading bar coded tags or as
-    sophisticated as identifying a person from their face.
-  </p>
-  <img src="./../static/images/homepage.jpg" />
+<div class="pt-4 my-4 container">
+  <div class="d-flex">
+    <div>
+      <h1 class="mb-3">
+        {% block title %} Image Analyzer {% endblock %}
+      </h1>
+      <p>
+        Image analysis or imagery analysis is the extraction of meaningful
+        information from images; mainly from digital images by means of digital
+        image processing techniques.
+      </p>
+      <p>
+        Image analysis tasks can be as simple as reading bar coded tags or as
+        sophisticated as identifying a person from their face.
+      </p>
+    </div>
+    <div>
+      <img width="50%" src="./../static/images/homepage.jpg" />
+    </div>
+  </div>
 </div>
+
+{% include 'new.html' %} 
+{% include 'history.html' %} 
+
 {% endblock %}
