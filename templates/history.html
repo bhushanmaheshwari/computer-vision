@@ -1,6 +1,24 @@
+{% extends 'base.html' %} {% block content %}
 
-{% extends 'base.html' %}
+<div class="pt-4 container">
+  <h1 class="mb-3">{% block title %} History {% endblock %}</h1>
 
-{% block content %}
-    <h1>{% block title %} History {% endblock %}</h1>
+  <table class="table history-table">
+    <thead>
+      <td>Image</td>
+      <td>Analysis</td>
+    </thead>
+    {% for row in rows %}
+    <tr>
+      <td><img src={{ row['path'] }}></td>
+      <td>
+        <div class="d-flex">
+          <div><b>Name:&nbsp;</b></div>
+          <div>{{row["name"]}}</div>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
 {% endblock %}

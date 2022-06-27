@@ -2,5 +2,15 @@
 <div class="pt-4 container">
   <h1 class="mb-3">{% block title %} Trying a new image? {% endblock %}</h1>
   <p>You can upload your image here, and see the results at run time!</p>
+
+  <form
+    action="/details"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <input type="file" name="file" />
+    <input type="submit" />
+  </form>
+
 </div>
 {% endblock %}
