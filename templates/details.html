@@ -22,9 +22,15 @@
     </div>
     <div class="row each-result">
       <div class="col-md-2 border-right">Tags</div>
-      {% for tag in tags %}
-      <div class="col-md-8">{{tag}}</div>
-      {% endfor %}
+      <div class="col-md-8">
+        {% for tag in tags %}
+        <div class="d-flex">
+          <div>{{tag.name}}</div>
+          <div>&nbsp;|&nbsp;</div>
+          <div class="">{{'%0.2f' % (tag.confidence * 100)|float}}%</div>
+        </div>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </div>

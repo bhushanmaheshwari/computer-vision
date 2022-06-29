@@ -59,11 +59,11 @@ def upload_file():
                 ]
             )
 
-        description = '' 
+        description = ''
         description = image_analysis.description.captions[0].text
         tags = ''
         for tag in image_analysis.tags:
-            tags += ("{}\t\t{}".format(tag.name, tag.confidence)) + ', '
+            tags += ("{}\t-\t{:0.2f}%".format(tag.name, tag.confidence * 100)) + ' | '
 
         colors = ''
         for color in image_analysis.color.dominant_colors:
@@ -81,7 +81,7 @@ def upload_file():
             con.rollback()
         finally:
             con.close()
-            return render_template('details.html', filename=f.filename, path=path, description=description, tags=tags, color=colors)
+            return render_template('details.html', filename=f.filename, path=path, description=description, tags=image_analysis.tags, color=colors)
 
 
 if __name__ == '__main__':
