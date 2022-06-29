@@ -2,9 +2,9 @@ import os
 import sqlite3 as sql
 from flask import Flask, render_template,  request
 from werkzeug.utils import secure_filename
-# from azure.cognitiveservices.vision.computervision import ComputerVisionClient
-# from azure.cognitiveservices.vision.computervision.models import VisualFeatureTypes
-# from msrest.authentication import CognitiveServicesCredentials
+from azure.cognitiveservices.vision.computervision import ComputerVisionClient
+from azure.cognitiveservices.vision.computervision.models import VisualFeatureTypes
+from msrest.authentication import CognitiveServicesCredentials
 
 # sqlite
 app = Flask(__name__)
@@ -19,11 +19,11 @@ conn.close()
 key = '76a73a58680a4d45ad7f9428c572fa27'
 endpoint = 'https://cogser-one.cognitiveservices.azure.com/'
 
-# credentials = CognitiveServicesCredentials(key)
-# client = ComputerVisionClient(
-#     endpoint=endpoint,
-#     credentials=credentials
-# )
+credentials = CognitiveServicesCredentials(key)
+client = ComputerVisionClient(
+    endpoint=endpoint,
+    credentials=credentials
+)
 
 
 @app.route('/')
@@ -46,28 +46,28 @@ def upload_file():
         )
         f.save(path)
 
-        # with open(path, "rb") as image_stream:
-        #     image_analysis = client.analyze_image_in_stream(
-        #         image=image_stream,
-        #         visual_features=[
-        #             VisualFeatureTypes.image_type,  # Could use simple str "ImageType"
-        #             VisualFeatureTypes.faces,      # Could use simple str "Faces"
-        #             VisualFeatureTypes.categories,  # Could use simple str "Categories"
-        #             VisualFeatureTypes.color,      # Could use simple str "Color"
-        #             VisualFeatureTypes.tags,       # Could use simple str "Tags"
-        #             VisualFeatureTypes.description  # Could use simple str "Description"
-        #         ]
-        #     )
+        with open(path, "rb") as image_stream:
+            image_analysis = client.analyze_image_in_stream(
+                image=image_stream,
+                visual_features=[
+                    VisualFeatureTypes.image_type,  # Could use simple str "ImageType"
+                    VisualFeatureTypes.faces,      # Could use simple str "Faces"
+                    VisualFeatureTypes.categories,  # Could use simple str "Categories"
+                    VisualFeatureTypes.color,      # Could use simple str "Color"
+                    VisualFeatureTypes.tags,       # Could use simple str "Tags"
+                    VisualFeatureTypes.description  # Could use simple str "Description"
+                ]
+            )
 
         description = '' 
-        # description = image_analysis.description.captions[0].text
+        description = image_analysis.description.captions[0].text
         tags = ''
-        # for tag in image_analysis.tags:
-        #     tags += ("{}\t\t{}".format(tag.name, tag.confidence)) + ', '
+        for tag in image_analysis.tags:
+            tags += ("{}\t\t{}".format(tag.name, tag.confidence)) + ', '
 
         colors = ''
-        # for color in image_analysis.color.dominant_colors:
-        #     colors += color + ', '
+        for color in image_analysis.color.dominant_colors:
+            colors += color + ', '
 
         try:
             with sql.connect("database.db") as con:
