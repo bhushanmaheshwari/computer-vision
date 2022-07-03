@@ -4,11 +4,13 @@
   <table class="table history-table">
     <thead>
       <td>Image</td>
+      <td>Object Detection</td>
       <td>Analysis</td>
     </thead>
     {% for row in rows %}
     <tr>
       <td><img src={{ row['path'] }}></td>
+      <td><img src={{ row['detectionPath'] }}></td>
       <td>
         <div class="d-flex">
           <div><b>Name:&nbsp;</b></div>

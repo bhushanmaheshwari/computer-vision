@@ -3,7 +3,7 @@
   <h1 class="mb-3">{% block title %} Our Analysis {% endblock %}</h1>
   <p>
     We are using computer vision apis from Azure Coginitive Services to derive
-    the results!
+    the results, and yolo v3.0 to do object detection!
   </p>
   <div class="image-results">
     <div class="row each-result">
@@ -30,6 +30,12 @@
           <div class="">{{'%0.2f' % (tag.confidence * 100)|float}}%</div>
         </div>
         {% endfor %}
+      </div>
+    </div>
+    <div class="row each-result">
+      <div class="col-md-2 border-right">Object Detection</div>
+      <div class="col-md-8">
+        <img width="100%" src="{{detectionPath}}" alt="{{filename}}" />
       </div>
     </div>
   </div>
