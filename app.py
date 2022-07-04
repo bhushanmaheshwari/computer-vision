@@ -37,7 +37,8 @@ def index():
     cur = con.cursor()
     cur.execute("select * from history_db_dev")
     rows = cur.fetchall()
-    return render_template('index.html',  rows=rows)
+    models = client.list_models()
+    return render_template('index.html',  rows=rows, domains = models)
 
 
 @app.route('/details', methods=['GET', 'POST'])

@@ -2,20 +2,27 @@
   <h4 class="mb-5">Trying with a new image?</h4>
 
   <div class="d-flex">
-    <div class="mr-3">
+    <div class="mr-4">
       <img width="150" src="./../static/images/upload.jpg" />
     </div>
     <div>
       <p>You can upload your image here, and see the results at run time!</p>
-      <form
-        action="/details"
-        method="POST"
-        enctype="multipart/form-data"
-      >
-        <div class="mb-4">
-          <input class="form-control" type="file" name="file" />
+      <form action="/details" method="POST" enctype="multipart/form-data">
+        <div class="">
+          <input class="form-control" type="file" name="file" />˝
         </div>
-        <input type="submit" class="btn btn-primary"/>
+        <div class="mb-4">
+          <p>Looking for any particular domain(s)?</p>
+          {% for domain in domains.models_property %}
+          <div class="form-check">
+            <input class="form-check-input" name="domains" type="checkbox" value="" id={{domain.name}}>
+            <label class="form-check-label" for={{domain.name}}>
+              {{domain.name}}
+            </label>
+          </div>
+          {% endfor %}
+        </div>
+        <input type="submit" class="btn btn-primary" />
       </form>
     </div>
   </div>
