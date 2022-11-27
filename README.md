@@ -1,5 +1,5 @@
 # Image Analysis Project
-This project is work in progress for analyzing images, and generates the output descibing the image including tags, object detection, face detection, and other details. Long-term plan is to build a generic set of apis, that takes multiple photos at a time, and output a temporary photo gallery.
+This project is work in progress for analyzing images, and generates the output describing the image including tags, object detection, face detection, and other details. Long-term plan is to build a generic set of apis, that takes multiple photos at a time, and output a temporary photo gallery.
 ### Next Steps
 - Set up DevOps
 - Expose an API
